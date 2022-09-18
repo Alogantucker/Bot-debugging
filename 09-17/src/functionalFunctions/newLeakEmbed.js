@@ -61,7 +61,8 @@ const completeEmbed = {
       ]
     })
   ],
-  files: [{ attachment: attachment.length ? attachment : []}] // spread an empty if it's nothing so we end up with an empty array
+  files: attachment.length ? [attachment] : []
+   // spread an empty if it's nothing so we end up with an empty array
 }
 console.log(`bout to return completeEmbed line 65 of newLeakEmbed.js`);
 // await interaction.followUp(completeEmbed);
