@@ -56,9 +56,11 @@ const completeEmbed = {
   ],
   files: [...(attachment.length ? [{ attachment }] : [])] // spread an empty if it's nothing so we end up with an empty array
 }
+console.log(`completeEmbed.fields`, completeEmbed.fields);
+console.log(`completeEmbed.embeds.fields`, completeEmbed.embeds.fields);
 if (notes.length)
   // basically we insert fields here
-  completeEmbed.fields.splice(1, 0, {
+  completeEmbed.embeds.fields = Object.assign(completeEmbed.embeds.fields,{
     name: "Additional Notes : ",
     value: `${notes}`,
     inline: false
