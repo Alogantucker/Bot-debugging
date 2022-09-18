@@ -8,12 +8,11 @@ const {
 
 
 module.exports = async function newLeakEmbed(client, interaction, targetChannel, attachment = '', role1 = 'nobody', role2 = '', role3 = '', leakName, dateOfLeak, altLeakNames = '', price = 'FREE', notes = '') {
-  let x = attachment.length;
 console.log('Running New Leak Embed');
 const sendEmbed = EmbedBuilder.from({
   title: `New Leak! - ${leakName}`,
   description: altLeakNames.length ? `Alternative Names : ${altLeakNames}` : '',
-  color: 'Burple',
+  color: '1146986',
   footer: {
       text: "999 Till the WRLD Blows"
   },
@@ -38,13 +37,7 @@ const sendEmbed = EmbedBuilder.from({
   }
 }).setTimestamp();
 
-if (notes.length)
-  // basically we insert fields here
-  completeEmbed.fields.splice(1, 0, {
-    name: "Additional Notes : ",
-    value: `${notes}`,
-    inline: false
-  });
+
 
 const completeEmbed = {
   content: `Are you sure you want to send to channel: ${targetChannel} ?`,
@@ -61,9 +54,15 @@ const completeEmbed = {
       ]
     })
   ],
-  files: attachment.length ? [attachment] : []
-   // spread an empty if it's nothing so we end up with an empty array
+  files: [...(attachment.length ? [{ attachment }] : [])] // spread an empty if it's nothing so we end up with an empty array
 }
+if (notes.length)
+  // basically we insert fields here
+  completeEmbed.fields.splice(1, 0, {
+    name: "Additional Notes : ",
+    value: `${notes}`,
+    inline: false
+  });
 console.log(`bout to return completeEmbed line 65 of newLeakEmbed.js`);
 // await interaction.followUp(completeEmbed);
 return completeEmbed
