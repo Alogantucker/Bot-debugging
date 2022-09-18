@@ -38,6 +38,15 @@ const sendEmbed = EmbedBuilder.from({
 }).setTimestamp();
 
 
+console.log(`sendEmbed.fields`, sendEmbed.fields);
+if (notes.length) {
+  // basically we insert fields here
+  sendEmbed.fields = Object.assign(sendEmbed.fields,{
+    name: "Additional Notes : ",
+    value: `${notes}`,
+    inline: false
+  });
+}
 
 const completeEmbed = {
   content: `Are you sure you want to send to channel: ${targetChannel} ?`,
@@ -58,13 +67,7 @@ const completeEmbed = {
 }
 console.log(`completeEmbed.fields`, completeEmbed.fields);
 console.log(`completeEmbed.embeds.fields`, completeEmbed.embeds.fields);
-if (notes.length)
-  // basically we insert fields here
-  completeEmbed.embeds.fields = Object.assign(completeEmbed.embeds.fields,{
-    name: "Additional Notes : ",
-    value: `${notes}`,
-    inline: false
-  });
+
 console.log(`bout to return completeEmbed line 65 of newLeakEmbed.js`);
 // await interaction.followUp(completeEmbed);
 return completeEmbed
